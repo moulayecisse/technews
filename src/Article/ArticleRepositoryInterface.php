@@ -13,10 +13,10 @@ use App\Entity\Article;
 
 interface ArticleRepositoryInterface
 {
-    public function find( int $id ) : Article;
-    public function findAll();
-    public function findLastFiveArticles( $limit = null, $offset = null );
-    public function findRelatedArticles( $idArticle, $idCategory );
-    public function findSpotlightArticles( $limit = null, $offset = null);
-    public function findSpecialArticles( $limit = null, $offset = null);
+    public function find( int $id ) : ?Article;
+    public function findAll() : array ;
+    public function findLastArticles($limit = null, $offset = null ) : array ;
+    public function findRelatedArticles( $idArticle, $idCategory ) : array ;
+    public function findSpotlightArticles( $limit = null, $offset = null) : array ;
+    public function findSpecialArticles( $limit = null, $offset = null) : array ;
 }

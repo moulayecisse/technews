@@ -29,28 +29,28 @@ class ArticleAbstractSource implements ArticleRepositoryInterface
         return $article;
     }
 
-    public function findAll()
+    public function findAll() : array
     {
-        // TODO: Implement findAll() method.
+        return [];
     }
 
-    public function findLastFiveArticles($limit = null, $offset = null)
+    public function findLastArticles($limit = null, $offset = null) : array
     {
-        // TODO: Implement findLastFiveArticles() method.
+        return [];
     }
 
-    public function findRelatedArticles($idArticle, $idCategory)
+    public function findRelatedArticles($idArticle, $idCategory) : array
     {
-        // TODO: Implement findRelatedArticles() method.
+        return [];
     }
 
-    public function findSpotlightArticles($limit = null, $offset = null)
+    public function findSpotlightArticles($limit = null, $offset = null) : array
     {
-        // TODO: Implement findSpotlightArticles() method.
+        return [];
     }
 
-    public function findSpecialArticles($limit = null, $offset = null)
+    public function findSpecialArticles($limit = null, $offset = null) : array
     {
-        // TODO: Implement findSpecialArticles() method.
+        return [];
     }
 }
