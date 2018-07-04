@@ -24,7 +24,6 @@ class MenuRequestHandler
     /**
      * ArticleRequestHandler constructor.
      * @param EntityManagerInterface $entityManager
-     * @param $article_image_path
      */
     public function __construct(EntityManagerInterface $entityManager)
     {

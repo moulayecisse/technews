@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Etudiant0
+ * User: Moulaye CISSE
  * Date: 03/07/2018
  * Time: 09:54
  */
@@ -11,18 +11,16 @@ namespace App\Handler;
 
 use App\Controller\HelperTrait;
 use App\Entity\Article;
-use App\Factory\ArticleFactory;
-use App\Request\ArticleRequest;
-use Doctrine\Common\Persistence\ObjectManager;
+use App\Article\ArticleFactory;
+use App\Article\ArticleRequest;
 use Doctrine\ORM\EntityManagerInterface;
-use PhpParser\Node\Scalar\String_;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ArticleRequestUpdateHandler
 {
     use HelperTrait;
 
-    private $objectManager, $article_image_path, $entityManager;
+    private $article_image_path, $entityManager;
 
 //    public function __construct( ObjectManager $objectManager, string $article_image_path )
     public function __construct( EntityManagerInterface $entityManager, string $article_image_path )

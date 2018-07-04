@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository;
+namespace App\Article;
 
 use App\Entity\Article;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -21,6 +21,9 @@ class ArticleRepository extends ServiceEntityRepository
 
     /**
      * Récupère les 5 derniers article
+     * @param null $limit
+     * @param null $offset
+     * @return mixed
      */
     public function findLastFiveArticles( $limit = null, $offset = null )
     {

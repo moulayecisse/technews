@@ -1,15 +1,14 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Etudiant0
+ * User: Moulaye CISSE
  * Date: 29/06/2018
  * Time: 15:57
  */
 
-namespace App\Form;
+namespace App\Article;
 
 use App\Entity\Category;
-use App\Request\ArticleRequest;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -58,7 +57,6 @@ class ArticleType extends AbstractType
             #Ajout de champ catégories
             ->add(
                 'content',
-//                TextareaType::class,
                 CKEditorType::class,
                 [
                     'required' => true,

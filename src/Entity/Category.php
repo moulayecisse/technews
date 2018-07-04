@@ -35,7 +35,6 @@ class Category
 
     /**
      * Category constructor.
-     * @param $articles
      */
     public function __construct()
     {

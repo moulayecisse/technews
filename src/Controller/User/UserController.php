@@ -18,10 +18,9 @@ class UserController extends Controller
      *     name="user_register",
      *     methods={"GET", "POST"})
      * @param Request $request
-     * @param UserRequestHandler $userRequestHandler
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function register(Request $request, UserRequestHandler $userRequestHandler)
+    public function register(Request $request)
     {
         # Création d'un nouvel utilisateur
         $user = new UserRequest();
@@ -34,7 +33,7 @@ class UserController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
 
             # Enregistrement de l'utilisateur
-            $user = $userRequestHandler->registerAsUser($user);
+//            $user = $userRequestHandler->registerAsUser($user);
 
             # Flash Messages
             $this->addFlash('notice','Félicitation, vous pouvez vous connecter !');

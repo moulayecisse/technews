@@ -20,7 +20,7 @@ class ModuleController extends BaseController
      */
     public function sidebar( Article $article = null )
     {
-        # Récupération du répository doctrine
+        # Récupération du repository doctrine
         $repository = $this->getDoctrine()->getRepository(Article::class);
 
         # Récupération des 5 derniers articles

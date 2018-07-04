@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Etudiant0
+ * User: Moulaye CISSE
  * Date: 03/07/2018
  * Time: 12:02
  */
@@ -11,12 +11,8 @@ namespace App\User;
 
 use App\Entity\Newsletter;
 use App\Entity\User;
-use DateTime;
 use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\Security\Core\AuthenticationEvents;
-use Symfony\Component\Security\Core\Event\AuthenticationEvent;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 use Symfony\Component\Security\Http\SecurityEvents;
 
@@ -26,7 +22,7 @@ class UserSubscriber implements EventSubscriberInterface
 
     /**
      * UserSubscriber constructor.
-     * @param EntityManagerInterface $entityManager
+     * @param ObjectManager $entityManager
      */
     public function __construct(ObjectManager $entityManager)
     {
@@ -69,5 +65,13 @@ class UserSubscriber implements EventSubscriberInterface
 
         $this->entityManager->persist($newsletter);
         $this->entityManager->flush();
+    }
+
+    public function onUserDeleted( UserEvent $event )
+    {
+    }
+
+    public function onUserUpdated( UserEvent $event )
+    {
     }
 }

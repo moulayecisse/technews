@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Etudiant0
+ * User: Moulaye CISSE
  * Date: 29/06/2018
  * Time: 15:31
  */
@@ -11,9 +11,10 @@ namespace App\Handler;
 
 use App\Controller\HelperTrait;
 use App\Entity\Article;
-use App\Factory\ArticleFactory;
-use App\Request\ArticleRequest;
+use App\Article\ArticleFactory;
+use App\Article\ArticleRequest;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Asset\Package;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -27,7 +28,7 @@ class ArticleRequestHandler
      * ArticleRequestHandler constructor.
      * @param EntityManagerInterface $entityManager
      * @param String $article_image_path
-     * @param Package $package
+     * @param Packages $package
      */
     public function __construct(EntityManagerInterface $entityManager, String $article_image_path, Packages $package)
     {

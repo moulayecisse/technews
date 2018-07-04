@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CategoryController extends BaseController
 {
     /**
-     * Affiche les category d'une categorie
+     * Affiche les category d'une catégorie
      * @Route(
      *     path="/category/{slug}",
      *     name="category_articles",
@@ -33,7 +33,7 @@ class CategoryController extends BaseController
             return $this->redirectToRoute('home', $this->parameters, Response::HTTP_MOVED_PERMANENTLY);
         }
 
-        # /categorie/une-formation-symfony-a-paris_8796456.html
+        # /catégorie/une-formation-symfony-a-paris_8796456.html
 //        return new Response("<html><body><h1>Page d'accueil : $category</h1></body></html>");
         return $this->render( 'controllers/index/category.html.twig', [ 'category' => $category] );
     }

@@ -1,17 +1,17 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Etudiant0
+ * User: Moulaye CISSE
  * Date: 26/06/2018
  * Time: 10:19
  */
 
-namespace App\Service\Article;
+namespace App\Article;
 
 use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Yaml\Yaml;
 
-class ArticleYamlProvider
+class ArticleYAMLProvider
 {
     function getArticles() : iterable
     {
@@ -19,7 +19,7 @@ class ArticleYamlProvider
             return Yaml::parseFile(__DIR__ . '/articles.yaml');
         } catch (ParseException $parseException)
         {
-            printf( 'Unable to pasrse thez YAML string: %s', $parseException->getMessage() );
+            printf( 'Unable to parse the YAML string: %s', $parseException->getMessage() );
         }
 
         return [];

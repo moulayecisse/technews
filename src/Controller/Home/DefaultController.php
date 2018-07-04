@@ -4,9 +4,7 @@ namespace App\Controller\Home;
 use App\Controller\BaseController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use App\Entity\Article;
-use App\Service\Article\ArticleYamlProvider;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Tests\Controller;
 
 
 /**
@@ -17,14 +15,11 @@ class DefaultController extends BaseController
 {
     /**
      * Page d'accueil de notre Site Internet
-     * @param ArticleYamlProvider $yamlProvider
      * @return Response
      * @Route( path="/", name="home")
      */
     public function index()
     {
-        $repository = $this->getDoctrine()->getRepository(Article::class);
-
         return $this->render( 'controllers/index/index.html.twig' );
     }
 
@@ -33,7 +28,7 @@ class DefaultController extends BaseController
      */
     public function sidebar()
     {
-        # Récupération du répository doctrine
+        # Récupération du repository doctrine
         $repository = $this->getDoctrine()->getRepository(Article::class);
 
         # Récupération des 5 derniers articles

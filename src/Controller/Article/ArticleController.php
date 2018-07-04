@@ -4,17 +4,14 @@ namespace App\Controller\Article;
 use App\Controller\BaseController;
 use App\Controller\HelperTrait;
 use App\Entity\Article;
-use App\Entity\User;
-use App\Factory\ArticleRequestFactory;
-use App\Form\ArticleType;
+use App\Article\ArticleRequestFactory;
+use App\Article\ArticleType;
 use App\Handler\ArticleRequestHandler;
 use App\Handler\ArticleRequestUpdateHandler;
-use App\Request\ArticleRequest;
+use App\Article\ArticleRequest;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Component\Asset\Package;
 use Symfony\Component\Asset\Packages;
-use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -81,19 +78,18 @@ class ArticleController extends BaseController
     }
 
     /**
-     * Affiche les category d'une categorie
+     * Affiche les category d'une catégorie
      * @Route(
      *     path="/{category}/{slug}_{id}.html",
      *     name="article_show",
      *     methods={"GET"},
      *     requirements={"id":"\d+"}
      *     )
+     * @param Article $article
      * @return Response
      */
-    public function show(Article $article, $id)
+    public function show(Article $article)
     {
-        $article = $this->getDoctrine()->getRepository(Article::class)->find($id);
-
         if ($article === null) {
             return $this->redirectToRoute('home', $this->parameters, Response::HTTP_MOVED_PERMANENTLY);
         }
@@ -102,7 +98,7 @@ class ArticleController extends BaseController
     }
 
     /**
-     * Affiche les category d'une categorie
+     * Affiche les category d'une catégorie
      * @Route(
      *     path="/edit/{id}",
      *     name="article_edit",

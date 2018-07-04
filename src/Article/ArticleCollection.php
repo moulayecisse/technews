@@ -10,7 +10,6 @@ namespace App\Article;
 
 
 use Countable;
-use Iterator;
 
 class ArticleCollection implements Countable
 {
@@ -30,6 +29,6 @@ class ArticleCollection implements Countable
      */
     public function count()
     {
-        return $this->count($this->articles);
+        return count($this->articles);
     }
 }

@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Etudiant0
+ * User: Moulaye CISSE
  * Date: 29/06/2018
  * Time: 16:25
  */
@@ -10,7 +10,6 @@ namespace App\Twig;
 
 use App\Entity\Category;
 use Doctrine\ORM\EntityManagerInterface;
-use PhpParser\Node\Scalar\String_;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;

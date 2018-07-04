@@ -6,7 +6,6 @@
  * Time: 07:43
  */
 namespace App\Request;
-use Symfony\Component\HttpFoundation\Request;
 
 class MenuRequest
 {

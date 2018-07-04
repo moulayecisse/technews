@@ -5,7 +5,6 @@ namespace App\Repository;
 use App\Entity\Menu;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @method Menu|null find($id, $lockMode = null, $lockVersion = null)

@@ -3,13 +3,11 @@
 namespace App\Entity;
 
 use App\Controller\HelperTrait;
-use DateTime;
 use Doctrine\ORM\Mapping as ORM;
-//use Vich\UploaderBundle\Entity\File;
 
 /**
  * @ORM\Table(name="article")
- * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
+ * @ORM\Entity(repositoryClass="App\Article\ArticleRepository")
 // * Vich\Uploadable
 **/
 class Article

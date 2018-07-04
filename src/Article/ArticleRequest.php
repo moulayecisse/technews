@@ -1,12 +1,12 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Etudiant0
+ * User: Moulaye CISSE
  * Date: 29/06/2018
  * Time: 15:35
  */
 
-namespace App\Request;
+namespace App\Article;
 
 
 use App\Entity\User;

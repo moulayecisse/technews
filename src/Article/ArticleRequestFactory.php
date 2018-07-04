@@ -1,16 +1,15 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Etudiant0
+ * User: Moulaye CISSE
  * Date: 29/06/2018
  * Time: 15:43
  */
 
-namespace App\Factory;
+namespace App\Article;
 
 
 use App\Entity\Article;
-use App\Request\ArticleRequest;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\HttpFoundation\File\File;
 
