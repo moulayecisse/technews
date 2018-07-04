@@ -1,0 +1,17 @@
+{% set route = app.request.get('_route') %}
+{% set route_params = app.request.get('_route_params') %}
+<!--menu mobile-->
+<nav class="menu-res hidden-lg hidden-md ">
+    <div class="menu-res-inner">
+        <ul>
+            {#{% for menu in menus %}#}
+            {#<li {% if( route ) == menu.pathPath %}class="current"{% endif %} ><a href="{{ path( 'home' ) }}">{{ menu.title }}</a></li>#}
+            {#{% endfor %}#}
+            <li {% if( route ) == 'home' %}class="current"{% endif %} ><a href="{{ path( 'home' ) }}">Accueil</a></li>
+
+            {% for category in categories %}
+                <li {% if( route == 'index_category' and route_params.slug == category.slug) %}class="current"{% endif %} ><a href="{{ path('index_category', { slug : category.slug } ) }}">{{ category.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</nav>

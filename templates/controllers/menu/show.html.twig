@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Menu{% endblock %}
+
+{% block content %}
+    <h1>Menu</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ menu.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ menu.name }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ menu.slug }}</td>
+            </tr>
+            <tr>
+                <th>Route</th>
+                <td>{{ menu.route }}</td>
+            </tr>
+            <tr>
+                <th>IsActive</th>
+                <td>{{ menu.isActive ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>IsPublished</th>
+                <td>{{ menu.isPublished ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('menu_index') }}">back to list</a>
+
+    <a href="{{ path('menu_edit', {'id': menu.id}) }}">edit</a>
+
+    {{ include('controllers/menu/_delete_form.html.twig') }}
+{% endblock %}

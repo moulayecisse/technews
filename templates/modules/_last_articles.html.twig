@@ -1,0 +1,41 @@
+<!--tab popular-->
+<ul role="tablist" class="tab-popular">
+    <li class="active">
+        <a href="#tab1" role="tab" data-toggle="tab">
+            {{ 'DERNI&Egrave;RE PUBLICATIONS' | trans }}
+        </a>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="tab1">
+        <ul class="list-news-popular">
+            {% for article in spotlightArticles %}
+                <li>
+                    <a href="{{ path('article_show', { 'category' : article.category.slug, 'slug' : article.slug, 'id' : article.id } )}}">
+                        <img alt="{{ article.title }}" src="{{ asset('images/product/' ~ article.featuredImage ) }}" />
+                    </a>
+
+                    <h3>
+                        <a href="{{ path( 'category_articles', { 'slug' : article.category.slug } ) }}" class="cate-tag">
+                            {{ article.category.name }}
+                        </a>
+                    </h3>
+
+                    <div class="meta-post">
+                        <a href="/author/{{ article.user.id }}">
+                            {{ article.user.firstName ~ ' ' ~ article.user.lastName }}
+                        </a>
+
+                        <em></em>
+
+                        <span>
+                            {{ article.createdDate | date('d-m-Y') }}
+                        </span>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+</div>

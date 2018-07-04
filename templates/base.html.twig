@@ -1,0 +1,192 @@
+{% set route = app.request.attributes.get('_route') %}
+{% set route_params = app.request.attributes.get('_route_params') %}
+<!doctype html>
+
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <title>
+            {% block title %}
+                {% block page_title '' %} |
+                {% block site_title 'TechNews' %}
+            {% endblock %}
+        </title>
+
+        {% block stylesheets %}
+            <!-- Favicon -->
+            <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}">
+            <link rel="apple-touch-icon" href="{{ asset('images/apple-touch-icon-57x57.png') }}">
+            <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('images/apple-touch-icon-72x72.png') }}">
+            <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('images/apple-touch-icon-114x114.png') }}">
+
+            <!-- Online Fonts -->
+            <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,700&subset=latin-ext" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700" rel="stylesheet">
+
+            <!-- Vendor -->
+            {#<link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet"/>#}
+            {#<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">#}
+            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+            <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet"/>
+            <link href="{{ asset('css/normalize.min.css') }}" rel="stylesheet"/>
+            <link href="{{ asset('css/owl.carousel.min.css') }}" rel="stylesheet"/>
+            <link href="{{ asset('css/newsletter.css') }}" rel="stylesheet"/>
+            <!-- Main CSS (SCSS Compile) -->
+            <link href="{{ asset('css/main.css') }}" rel="stylesheet"/>
+            <!-- JavaScripts -->
+            <!--<script src="js/modernizr.js"></script>-->
+            <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+            <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+            <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+            <![endif]-->
+        {% endblock %}
+
+        {% block page_stylesheets '' %}
+    </head>
+
+    <body class="{% block body_class '' %}">
+        <!--preload-->
+        <div class="loader" id="page-loader">
+            <div class="loading-wrapper">
+            </div>
+        </div>
+
+        <!--menu mobile-->
+        <nav class="menu-res hidden-lg hidden-md ">
+            <div class="menu-res-inner">
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="business.html">BUSINESS</a></li>
+                    <li><a href="computing.html"> COMPUTING</a></li>
+                    <li><a href="tech.html">TECH</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="page">
+            <div class="container">
+                <!--header-->
+                <header class="header">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-4 col-xs-12">
+                            <a href="#" class="logo">
+                                <img alt="Logo" src="{{ asset('images/logo.png') }}"/>
+                            </a>
+                        </div>
+                    </div>
+                </header>
+
+                <!--menu-->
+                <nav class="menu font-heading">
+                    <div class="menu-icon hidden-lg hidden-md">
+                        <i class="fa fa-navicon"></i>
+                        <span>{{ 'MENU' | trans }}</span>
+                    </div>
+
+                    {{
+                        render(
+                            controller(
+                                'App\\Controller\\Module\\ModuleController::menu',
+                                {
+                                    'route' : route,
+                                    'route_params' :route_params
+                                }
+                            )
+                        )
+                    }}
+
+                    <div class="search-icon">
+                        <div class="search-icon-inner">
+                            <i class="fa fa-search"></i>
+                        </div>
+                        <div class="search-box">
+                            <input type="text" placeholder="Rechercher..."/>
+                            <button>Lancer</button>
+                        </div>
+                    </div>
+                </nav>
+
+                {% for message in app.flashes('notice') %}
+                    <div class="row">
+                        <div class="alert alert-info">
+                            {{ message }}
+                        </div>
+                    </div>
+                {% endfor %}
+
+                {% block content %}
+                    <div class="row">
+                        <!--colleft-->
+                        <div class="col-md-8 col-sm-12">
+                            <div class="box-caption">
+                                <span>spotlight</span>
+                            </div>
+
+                            {{ render( controller( 'App\\Controller\\Module\\ModuleController::spotlight' ) ) }}
+
+                            {{ render( controller( 'App\\Controller\\Module\\ModuleController::spotlightThumbs' ) ) }}
+                        </div>
+
+                        {{ render( controller( 'App\\Controller\\Module\\ModuleController::sidebar' ) ) }}
+                    </div>
+                {% endblock %}
+            </div>
+
+            <!--footer-->
+            <footer class="footer">
+                <div class="container">
+                    <div class="row">
+                        {{ render( controller( 'App\\Controller\\Module\\ModuleController::presentation' ) ) }}
+
+                        {{ render( controller( 'App\\Controller\\Module\\ModuleController::categories' ) ) }}
+
+                        {{ render( controller( 'App\\Controller\\Module\\ModuleController::tags' ) ) }}
+                    </div>
+
+                    <!--All right-->
+                    <div class="allright">
+                        <div class="row">
+                            {{ render( controller( 'App\\Controller\\Module\\ModuleController::copyrights' ) ) }}
+
+                            {{ render( controller( 'App\\Controller\\Module\\ModuleController::socialMedias' ) ) }}
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+        {% dump app.session.get('visits') %}
+
+        {% if isUserInvited() %}
+            {{ render(controller('App\\Newsletter\\NewsletterController::newsletter' )) }}
+        {% endif %}
+
+        {% block javascripts %}
+            <!--scrip file-->
+            <script src="{{ asset('js/jquery.min.js') }}"></script>
+            <script src="{{ asset('js/bootstrap.js') }}"></script>
+            <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+            <script src="{{ asset('js/main.js') }}"></script>
+
+            {% if isUserInvited() %}
+            <script>
+                $(
+                    function () {
+                    $('#newsletterModal').modal('show')
+
+                    }
+                );
+            </script>
+            {% endif %}
+        {% endblock %}
+
+        {% block page_javascripts '' %}
+    </body>
+</html>

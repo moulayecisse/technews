@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title 'Rédiger un Article'%}
+
+{% block page_stylesheets %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css" />
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-8 col-ws-offset-1">
+            <h3>Modifier un Article</h3>
+
+            {#{% form_theme form 'bootstrap_3_layout.html.twig' %}#}
+
+            {{ form(form, {attr: {novalidate: 'novalidate'}}) }}
+        </div>
+
+        {{ render( controller( 'App\\Controller\\Module\\ModuleController::sidebar', { 'article': article } ) ) }}
+        {#{{ render( controller( 'App\\Controller\\Module\\ModuleController::sidebar' ) ) }}#}
+    </div>
+{% endblock %}
+
+{% block page_javascripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
+    {#<script src="https://cdn.ckeditor.com/ckeditor5/10.1.0/classic/ckeditor.js"></script>#}
+
+    <script>
+        // ClassicEditor
+        //     .create( document.querySelector( '#form_content' ) )
+        //     .catch( error => {
+        //         console.error( error );
+        //     } );
+
+        $('.dropify').dropify({
+            messages: {
+                default: 'Glissez-d&eacute;posez un fichier ici ou cliquez',
+                replace: 'Glissez-d&eacute;posez un fichier ou cliquez pour remplacer',
+                remove:  'Supprimer',
+                error:   'D&eacute;sol&eacute;, le fichier est trop volumineux'
+            }
+        });
+    </script>
+
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+{% endblock %}

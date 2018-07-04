@@ -1,0 +1,70 @@
+{% extends "base.html.twig" %}
+
+{% block page_title category.name | title %}
+
+{% block content %}
+    <div class="row">
+        <!--colleft-->
+        <div class="col-md-8 col-sm-12">
+
+            {% if category.articles is not empty %}
+                <div class="box-caption">
+                    <span>{{ category.name }}</span>
+                    {#<span>{{ articles[0].category.name }}</span>#}
+                    {#<span>{{ app.request.get('slug') }}</span>#}
+                </div>
+            {%  else %}
+                <div class="alert alert-danger">
+                    <strong>Aucune publication pour le moment</strong>
+                </div>
+            {%  endif %}
+
+            <!--list-news-cate-->
+            {% for article in category.articles %}
+            <div class="list-news-cate">
+                <article class="news-cate-item">
+                    <div class="row">
+                        <div class="col-md-5 col-sm-5 col-xs-12">
+                            <a href="#">
+                                <img alt="" src="{{ asset('images/product/2.jpg') }}">
+                            </a>
+                        </div>
+
+                        <div class="col-md-7 col-sm-7 col-xs-12">
+                            <h3><a href="#">{{ article.title }}</a></h3>
+
+                            <div class="meta-post">
+                                <a href="#">
+                                    {{ article.user.firstName ~ ' ' ~ article.user.lastName }}
+                                </a>
+
+                                <em></em>
+
+                                <span>
+                                    {{ article.createdDate | date( 'd-m-Y' ) }}
+                                </span>
+                            </div>
+
+                            {% autoescape %}
+                                {{ article.content|wrap(170) }}
+                            {% endautoescape %}
+                        </div>
+                    </div>
+                </article>
+            </div>
+            {% endfor %}
+
+            {#<div class="paging">#}
+                {#<a href="#">Prev</a>#}
+                {#<a href="#" class="current">1</a>#}
+                {#<a href="#">2</a>#}
+                {#<a href="#">3</a>#}
+                {#<a href="#">4</a>#}
+                {#<a href="#">5</a>#}
+                {#<a href="#">Next</a>#}
+            {#</div>#}
+        </div>
+
+        {{ render( controller( 'App\\Controller\\Module\\ModuleController::sidebar' ) ) }}
+    </div>
+{% endblock %}

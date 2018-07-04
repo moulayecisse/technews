@@ -1,0 +1,21 @@
+<!--footer-->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            {{  render(controller( 'App\\Controller\\Module\\ModuleController::logoFooter' )) }}
+
+            {{  render(controller( 'App\\Controller\\Module\\ModuleController::categories' )) }}
+
+            {{  render(controller( 'App\\Controller\\Module\\ModuleController::tags' )) }}
+        </div>
+
+        <!--All right-->
+        <div class="allright">
+            <div class="row">
+                {{  render(controller( 'App\\Controller\\Module\\ModuleController::copyrights' )) }}
+
+                {{  render(controller( 'App\\Controller\\Module\\ModuleController::socialMedias' )) }}
+            </div>
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,123 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title article.title | title %}
+
+{% block content %}
+    {#{{ dump(article) }}#}
+    {#{{ dump(article.category.id) }}#}
+    {#{{ dump(article.category) }}#}
+
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-info">{{message}}</div>
+    {% endfor %}
+
+    <div class="row">
+        <!--colleft-->
+        <div class="col-md-8 col-sm-12">
+            <!--post-detail-->
+            <article class="post-detail">
+                <h1>{{ article.title | title }}</h1>
+
+                <div class="meta-post">
+                    <a href="javascript:void(0)">
+                        {{ article.user.firstName ~ ' ' ~ article.user.lastName }}
+                    </a>
+
+                    <em></em>
+
+                    <span>
+                        {{ article.createdDate | date('d-m-Y') }}
+                    </span>
+                </div>
+
+                <img
+                    alt="{{ article.title }}"
+                     src="{{ asset('images/product/'~article.featuredImage) }}"
+                     class="img-responsive"
+                />
+            </article>
+
+            {% if false %}
+            <!--social-detail-->
+            <div class="social-detail">
+                <span>   Share article</span>
+
+                <ul class="list-social-icon">
+                    <li>
+                        <a href="#" class="facebook">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="twitter">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="google">
+                            <i class="fa fa-google"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="youtube">
+                            <i class="fa fa-youtube-play"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="pinterest">
+                            <i class="fa fa-pinterest-p"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="rss">
+                            <i class="fa fa-rss"></i>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <!--related post-->
+            <div class="detail-caption">
+                <span>RELATED POST</span>
+            </div>
+
+            <section class="spotlight-thumbs spotlight-thumbs-related">
+                <div class="row">
+                    {% for article in relatedArticles %}
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="spotlight-item-thumb">
+                                <div class="spotlight-item-thumb-img">
+                                    <a href="#">
+                                        <img alt="" src="{{ asset('images/product/' ~ article.featuredImage) }}">
+                                    </a>
+
+                                    <a href="#" class="cate-tag">{{ article.category.name }}</a>
+                                </div>
+
+                                <h3>
+                                    <a href="#">{{ article.title | title }}</a>
+                                </h3>
+
+                                <div class="meta-post">
+                                    <a href="#">
+                                        {{ article.user.firstName ~ ' ' ~ article.user.lastName }}
+                                    </a>
+
+                                    <em></em>
+
+                                    <span>
+                                        {{ article.createdDate | date('d-m-Y') }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
+            {% endif %}
+        </div>
+
+        {{ render( controller( 'App\\Controller\\Module\\ModuleController::sidebar', { 'article': article } ) ) }}
+    </div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Menu index{% endblock %}
+
+{% block content %}
+    <h1>Menu index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>{{ 'Id' | trans }}</th>
+                <th>{{ 'Name' | trans }}</th>
+                <th>{{ 'Slug' | trans }}</th>
+                <th>{{ 'Route' | trans }}</th>
+                <th>{{ 'IsActive' | trans }}</th>
+                <th>{{ 'IsPublished' | trans }}</th>
+                <th>{{ 'actions' | trans }}</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for menu in menus %}
+                <tr>
+                    <td>{{ menu.id }}</td>
+                    <td>{{ menu.name }}</td>
+                    <td>{{ menu.slug }}</td>
+                    <td>{{ menu.route }}</td>
+                    <td>{{ menu.isActive ? 'Yes' : 'No' }}</td>
+                    <td>{{ menu.isPublished ? 'Yes' : 'No' }}</td>
+                    <td>
+                        <a href="{{ path('menu_show', {'id': menu.id}) }}">show</a>
+                        <a href="{{ path('menu_edit', {'id': menu.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7">no records found</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('menu_new') }}">{{ 'Create new' | trans }}</a>
+{% endblock %}
