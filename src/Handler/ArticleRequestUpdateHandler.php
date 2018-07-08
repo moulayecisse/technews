@@ -11,8 +11,8 @@ namespace App\Handler;
 
 use App\Controller\HelperTrait;
 use App\Entity\Article;
-use App\Article\ArticleFactory;
-use App\Article\ArticleRequest;
+use App\Factory\ArticleFactory;
+use App\Request\ArticleRequest;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -31,7 +31,7 @@ class ArticleRequestUpdateHandler
     }
 
     /**
-     * @param ArticleRequest $articleRequest
+     * @param \App\Request\ArticleRequest $articleRequest
      * @param Article $article
      * @return Article
      */

@@ -12,8 +12,8 @@ use App\Controller\HelperTrait;
 use App\Entity\User;
 use App\Factory\UserFactory;
 use App\Request\UserRequest;
-use App\User\UserEvent;
-use App\User\UserEvents;
+use App\Service\Event\UserEvent;
+use App\Service\Event\UserEvents;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 

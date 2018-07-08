@@ -1,0 +1,36 @@
+<!-- special post-->
+<div class="connect-us">
+    <div class="widget-title">
+        <span>
+            {{ 'EN AVANT' | trans }}
+        </span>
+    </div>
+
+    <div class="list-special">
+        {% for article in articles %}
+            <article class="news-two-large">
+                <a href="{{ path('article_show', { 'category' : article.category.slug, 'slug' : article.slug, 'id' : article.id } )}}">
+                    <img alt="" src="{{ asset('images/product/4.jpg') }}">
+                </a>
+
+                <h3>
+                    <a href="{{ path('article_show', { 'category' : article.category.slug, 'slug' : article.slug, 'id' : article.id } )}}">
+                        {{ article.category.name }}
+                    </a>
+                </h3>
+
+                <div class="meta-post">
+                    <a href="/author/{{ article.user.id }}">
+                        {{ article.user.firstName ~ ' ' ~ article.user.lastName }}
+                    </a>
+
+                    <em></em>
+
+                    <span>
+                            {{ article.createdDate | date('d-m-Y') }}
+                        </span>
+                </div>
+            </article>
+        {% endfor %}
+    </div>
+</div>

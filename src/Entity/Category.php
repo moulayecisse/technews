@@ -78,4 +78,12 @@ class Category
     {
         return $this->articles;
     }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
 }

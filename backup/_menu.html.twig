@@ -1,0 +1,23 @@
+<ul class="hidden-sm hidden-xs">
+    <li {% if( route ) == 'home' %}class="current"{% endif %} >
+        <a href="{{ path('home') }}">Accueil</a>
+    </li>
+
+    {% for category in categories %}
+        <li {% if( route == 'index_category' and route_params.slug == category.slug) %}class="current"{% endif %} ><a href="{{ path('category_articles', { slug : category.slug } ) }}">{{ category.name }}</a></li>
+    {% endfor %}
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <li>
+            <a href="{{ path('security_logout') }}">Déconnexion</a>
+        </li>
+    {% else %}
+        <li>
+            <a href="{{ path('security_login') }}">Connexion</a>
+        </li>
+
+        <li>
+            <a href="{{ path('user_register') }}">Inscription</a>
+        </li>
+    {% endif %}
+</ul>

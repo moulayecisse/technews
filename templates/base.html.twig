@@ -162,10 +162,8 @@
             </footer>
         </div>
 
-        {% dump app.session.get('visits') %}
-
         {% if isUserInvited() %}
-            {{ render(controller('App\\Newsletter\\NewsletterController::newsletter' )) }}
+            {{ render(controller('App\\Controller\\Newsletter\\NewsletterController::newsletter' )) }}
         {% endif %}
 
         {% block javascripts %}

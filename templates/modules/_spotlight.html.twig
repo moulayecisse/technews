@@ -1,12 +1,15 @@
+{% set articles = articles ?? [] %}
 <!--sportlight-->
 <section class="owl-carousel owl-spotlight">
-    {% for article in spotlightArticles %}
+    {% for article in articles %}
         <div>
             <article class="spotlight-item">
                 <div class="spotlight-img">
-                    <img alt="{{ article.title }}" src="{{ asset('images/product/' ~ article.featuredImage ) }}" class="img-responsive" />
+                    <img alt="{{ article.title }}" src="{{ article.featuredImage }}" class="img-responsive" />
 
-                    <a href="{{ path( 'category_articles', { 'slug' : article.category.slug } ) }}" class="cate-tag">{{ article.category.name }}</a>
+                    <a href="{{ path( 'category_articles', { 'slug' : article.category.slug } ) }}" class="cate-tag">
+                        {{ article.category.name }}
+                    </a>
                 </div>
 
                 <div class="spotlight-item-caption">

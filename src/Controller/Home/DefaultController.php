@@ -32,7 +32,7 @@ class DefaultController extends BaseController
         $repository = $this->getDoctrine()->getRepository(Article::class);
 
         # Récupération des 5 derniers articles
-        $lastFiveArticles = $repository->findLastFiveArticles();
+        $lastFiveArticles = $repository->findLastArticles();
 
         # Récupération des articles à la position "special"
         $specialArticles = $repository->findSpecialArticles();

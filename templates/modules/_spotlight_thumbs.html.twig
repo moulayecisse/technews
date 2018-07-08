@@ -1,12 +1,14 @@
+{% set articles = articles ?? [] %}
+
 <!--spotlight-thumbs-->
 <section class="spotlight-thumbs">
     <div class="row">
-        {% for article in spotlightArticles %}
+        {% for article in articles %}
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="spotlight-item-thumb">
                     <div class="spotlight-item-thumb-img">
                         <a href="{{ path('article_show', { 'category' : article.category.slug, 'slug' : article.slug, 'id' : article.id } )}}">
-                            <img alt="{{ article.title }}" src="{{ asset('images/product/' ~ article.featuredImage ) }}" />
+                            <img alt="{{ article.title }}" src="{{ article.featuredImage }}" />
                         </a>
 
                         <a href="{{ path( 'category_articles', { 'slug' : article.category.slug } ) }}" class="cate-tag">{{ article.category.name }}</a>

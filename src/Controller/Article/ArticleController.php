@@ -4,11 +4,11 @@ namespace App\Controller\Article;
 use App\Controller\BaseController;
 use App\Controller\HelperTrait;
 use App\Entity\Article;
-use App\Article\ArticleRequestFactory;
-use App\Article\ArticleType;
+use App\Factory\ArticleRequestFactory;
+use App\Form\ArticleType;
 use App\Handler\ArticleRequestHandler;
 use App\Handler\ArticleRequestUpdateHandler;
-use App\Article\ArticleRequest;
+use App\Request\ArticleRequest;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Asset\Packages;
@@ -45,7 +45,7 @@ class ArticleController extends BaseController
         $articleRequest = new ArticleRequest($this->getUser());
 
         # Créer un formulaire permettant l'ajout d'un Article
-        $form = $this->createForm( ArticleType::class, $articleRequest );
+        $form = $this->createForm( \App\Form\ArticleType::class, $articleRequest );
 
         # Traitement des donnés POST
         $form->handleRequest($request);

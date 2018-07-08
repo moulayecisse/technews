@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Table(name="article")
- * @ORM\Entity(repositoryClass="App\Article\ArticleRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
 // * Vich\Uploadable
 **/
 class Article
@@ -93,6 +93,13 @@ class Article
     public function __construct()
     {
 //        $this->createdDate = new DateTime();
+    }
+
+
+    public function setId( $id ): self
+    {
+        $this->id = $id;
+        return $this;
     }
 
 

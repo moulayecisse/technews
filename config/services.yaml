@@ -35,14 +35,46 @@ services:
     # please note that last definitions always *replace* previous ones
 
     App\Handler\ArticleRequestHandler:
-        arguments: ['@Doctrine\ORM\EntityManagerInterface', '%article_image_path%', '@Symfony\Component\Asset\Packages']
-#        arguments:
-#            $article_image_path : '%article_image_path%'
+#        arguments: ['@Doctrine\ORM\EntityManagerInterface', '%article_image_path%', '@Symfony\Component\Asset\Packages']
+        arguments:
+            $article_image_path : '%article_image_path%'
 
-    App\Handler\UserRequestHandler:
-        arguments: ['@Doctrine\ORM\EntityManagerInterface', '@App\Factory\UserFactory']
+#    App\Handler\UserRequestHandler:
+#        arguments: ['@Doctrine\ORM\EntityManagerInterface', '@App\Factory\UserFactory']
 
     App\Handler\ArticleRequestUpdateHandler:
 #        arguments: ['@Doctrine\ORM\EntityManagerInterface', '%article_image_path%', '@Symfony\Component\Asset\Packages']
         arguments:
             $article_image_path : '%article_image_path%'
+
+    # Solution I
+#    App\Service\ArticleCatalogue:
+#        calls:
+#            - ['addSource', ['@App\Article\ArticleAPISource']]
+#            - ['addSource', ['@App\Article\ArticleDoctrineSource']]
+#            - ['addSource', ['@App\Article\ArticleDoctrineSource']]
+
+    # Solution II
+#    App\Service\Source\ArticleYAMLSource:
+#        tags:
+#            - app.article_source
+#    App\Service\Source\ArticleDoctrineSource:
+#        tags:
+#            - app.article_source
+#    App\Service\Source\ArticleAPIProvider:
+#        tags:
+#            - app.article_source
+#
+#    App\Service\ArticleCatalogue:
+#        calls:
+#            - ['setSources', [!tagged app.article_source]]
+
+    # Solution III
+    _instanceof :
+        App\Service\Source\ArticleAbstractSource:
+            tags:
+                - app.article_source
+
+    App\Service\ArticleCatalogue:
+        calls:
+            - ['setSources', [!tagged app.article_source]]

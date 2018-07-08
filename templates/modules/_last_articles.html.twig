@@ -1,8 +1,12 @@
+{% set articles = articles ?? [] %}
+
+{% trans_default_domain 'module.article.last_articles' %}
+
 <!--tab popular-->
 <ul role="tablist" class="tab-popular">
     <li class="active">
         <a href="#tab1" role="tab" data-toggle="tab">
-            {{ 'DERNI&Egrave;RE PUBLICATIONS' | trans }}
+            {{ 'module.article.last_articles.title' | trans }}
         </a>
     </li>
 </ul>
@@ -10,10 +14,10 @@
 <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="tab1">
         <ul class="list-news-popular">
-            {% for article in spotlightArticles %}
+            {% for article in articles %}
                 <li>
                     <a href="{{ path('article_show', { 'category' : article.category.slug, 'slug' : article.slug, 'id' : article.id } )}}">
-                        <img alt="{{ article.title }}" src="{{ asset('images/product/' ~ article.featuredImage ) }}" />
+                        <img alt="{{ article.title }}" src="{{ article.featuredImage }}" />
                     </a>
 
                     <h3>

@@ -1,0 +1,34 @@
+<!--spotlight-thumbs-->
+<section class="spotlight-thumbs">
+    <div class="row">
+        {% for article in spotlightArticles %}
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="spotlight-item-thumb">
+                    <div class="spotlight-item-thumb-img">
+                        <a href="{{ path('article_show', { 'category' : article.category.slug, 'slug' : article.slug, 'id' : article.id } )}}">
+                            <img alt="{{ article.title }}" src="{{ asset('images/product/' ~ article.featuredImage ) }}" />
+                        </a>
+
+                        <a href="{{ path( 'category_articles', { 'slug' : article.category.slug } ) }}" class="cate-tag">{{ article.category.name }}</a>
+                    </div>
+
+                    <h3>
+                        <a href="{{ path('article_show', { 'category' : article.category.slug, 'slug' : article.slug, 'id' : article.id } )}}">{{ article.title | title }}</a>
+                    </h3>
+
+                    <div class="meta-post">
+                        <a href="/author/{{ article.user.id }}">
+                            {{ article.user.firstName ~ ' ' ~ article.user.lastName }}
+                        </a>
+
+                        <em></em>
+
+                        <span>
+                            {{ article.createdDate | date('d-m-Y') }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>

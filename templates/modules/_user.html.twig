@@ -1,0 +1,30 @@
+{% if is_granted( 'IS_AUTHENTICATED_FULLY' ) %}
+    <h3 class="text-center">Bonjour {{ app.user.firstname }}</h3>
+    <h4 class="text-center">
+        {% if is_granted('ROLE_ADMIN') %}
+            Administrateur
+        {% elseif is_granted('ROLE_AUTHOR') %}
+            Auteur
+        {% else %}
+            Membre
+        {% endif %}
+    </h4>
+
+    {% if is_granted('ROLE_AUTHOR') %}
+        <li class="list-group-item">
+            <a href="{{ path('article_add') }}">
+                Rédiger un Article
+            </a>
+        </li>
+    {% endif %}
+
+
+    {% if article is defined and article is not null and article.user.id == app.user.id %}
+        <li class="list-group-item">
+            <a href="{{ path('article_edit', {'id' : article.id}) }}">
+                editer votre article
+            </a>
+        </li>
+    {% endif %}
+
+{% endif %}

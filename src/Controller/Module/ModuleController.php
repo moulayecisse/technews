@@ -1,9 +1,7 @@
 <?php
 namespace App\Controller\Module;
 
-use App\Article\ArticleCatalogue;
-use App\Article\ArticleDoctrineSource;
-use App\Article\ArticleYAMLSource;
+use App\Service\ArticleCatalogue;
 use App\Controller\BaseController;
 use App\Entity\Article;
 use App\Entity\Category;
@@ -16,46 +14,32 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class ModuleController extends BaseController
 {
-    private $sources;
     /**
      * @var ArticleCatalogue $articleCatalogue
      */
     private $articleCatalogue;
 
-    public function __construct( ArticleCatalogue $articleCatalogue, ArticleYAMLSource $articleYAMLSource, ArticleDoctrineSource $articleDoctrineSource )
+    public function __construct( ArticleCatalogue $articleCatalogue )
     {
-        $sources[] = $articleYAMLSource;
-//        $sources[] = $articleDoctrineSource;
-
         $this->articleCatalogue = $articleCatalogue;
-
-        $articleCatalogue->setSources($sources);
     }
 
     /**
      * Génération de la Sidebar
-     * @param Article|null $article
      * @return Response
      */
-    public function sidebar( Article $article = null )
+    public function sidebar()
     {
-//        # Récupération du repository doctrine
-//        $repository = $this->getDoctrine()->getRepository(Article::class);
-//
-//        # Récupération des 5 derniers articles
-//        $lastFiveArticles = $repository->findLastFiveArticles();
         $lastFiveArticles = $this->articleCatalogue->findLastArticles(5, 0);
-
-        # Récupération des articles à la position "special"
-//        $specialArticles = $repository->findSpecialArticles();
         $specialArticles = $this->articleCatalogue->findSpecialArticles(5, 0);
 
-        $this->view                           = 'components/_sidebar.html.twig';
-        $this->parameters['lastFiveArticles'] = $lastFiveArticles;
-        $this->parameters['specialArticles']  = $specialArticles;
-        $this->parameters['article']          = $article;
-
-        return $this->render( $this->view, $this->parameters );
+        return $this->render(
+            'components/_sidebar.html.twig',
+            [
+                'lastFiveArticles' => $lastFiveArticles,
+                'specialArticles'  => $specialArticles,
+            ]
+        );
     }
 
     /**
@@ -102,12 +86,7 @@ class ModuleController extends BaseController
 
     public function specialArticles()
     {
-//        $articleRepository = $this->getDoctrine()->getRepository(Article::class);
-//        $articles = $articleRepository->findSpecialArticles(1);
-
         $articles = $this->articleCatalogue->findSpecialArticles(5, 0);
-
-//        dump($this->articleCatalogue->findAll());
 
         return $this->render('modules/_special_articles.twig', [ 'articles' => $articles ] );
     }
@@ -117,12 +96,9 @@ class ModuleController extends BaseController
      */
     public function spotlight()
     {
-//        $articleRepository = $this->getDoctrine()->getRepository(Article::class);
-//        $spotlightArticles = $articleRepository->findSpotlightArticles(3);
+        $articles = $this->articleCatalogue->findSpotlightArticles(5, 0);
 
-        $spotlightArticles = $this->articleCatalogue->findSpotlightArticles(5, 0);
-
-        return $this->render('modules/_spotlight.html.twig', [ 'spotlightArticles' => $spotlightArticles ] );
+        return $this->render('modules/_spotlight.html.twig', [ 'articles' => $articles ] );
     }
 
     /**
@@ -130,12 +106,9 @@ class ModuleController extends BaseController
      */
     public function spotlightThumbs()
     {
-//        $articleRepository = $this->getDoctrine()->getRepository(Article::class);
-//        $spotlightArticles = $articleRepository->findSpotlightArticles( 9, 3 );
+        $articles = $this->articleCatalogue->findSpotlightArticles( 9, 3 );
 
-        $spotlightArticles = $this->articleCatalogue->findSpotlightArticles( 9, 3 );
-
-        return $this->render('modules/_spotlight_thumbs.html.twig', [ 'spotlightArticles' => $spotlightArticles ] );
+        return $this->render('modules/_spotlight_thumbs.html.twig', [ 'articles' => $articles ] );
     }
 
     /**
@@ -143,12 +116,9 @@ class ModuleController extends BaseController
      */
     public function lastArticles()
     {
-//        $articleRepository = $this->getDoctrine()->getRepository(Article::class);
-//        $spotlightArticles = $articleRepository->findLastFiveArticles( 4 );
+        $articles = $this->articleCatalogue->findLastArticles( 4, 0 );
 
-        $spotlightArticles = $this->articleCatalogue->findLastArticles( 4, 0 );
-
-        return $this->render('modules/_last_articles.html.twig', [ 'spotlightArticles' => $spotlightArticles ] );
+        return $this->render('modules/_last_articles.html.twig', [ 'articles' => $articles ] );
     }
 
     public function newsletter()
@@ -199,5 +169,13 @@ class ModuleController extends BaseController
     public function presentation()
     {
         return $this->render('modules/_presentation.html.twig');
+    }
+
+    /**
+     * Génération de la Mobile Menu
+     */
+    public function user()
+    {
+        return $this->render('modules/_user.html.twig');
     }
 }

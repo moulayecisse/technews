@@ -1,0 +1,42 @@
+<!--sportlight-->
+<section class="owl-carousel owl-spotlight">
+    {% for article in spotlightArticles %}
+        <div>
+            <article class="spotlight-item">
+                <div class="spotlight-img">
+                    <img alt="{{ article.title }}" src="{{ asset('images/product/' ~ article.featuredImage ) }}" class="img-responsive" />
+
+                    <a href="{{ path( 'category_articles', { 'slug' : article.category.slug } ) }}" class="cate-tag">
+                        {{ article.category.name }}
+                    </a>
+                </div>
+
+                <div class="spotlight-item-caption">
+                    <h2 class="font-heading">
+                        <a href="{{ path('article_show', { 'category' : article.category.slug, 'slug' : article.slug, 'id' : article.id } )}}">
+                            {{ article.title | title }}
+                        </a>
+                    </h2>
+
+                    <div class="meta-post">
+                        <a href="/author/{{ article.user.id }}">
+                            {{ article.user.firstName ~ ' ' ~ article.user.lastName }}
+                        </a>
+
+                        <em></em>
+
+                        <span>
+
+                                {{ article.createdDate | date('d-m-Y') }}
+                            </span>
+
+                    </div>
+
+                    {% autoescape %}
+                        {{ article.content|wrap(170) }}
+                    {% endautoescape %}
+                </div>
+            </article>
+        </div>
+    {% endfor %}
+</section>

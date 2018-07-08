@@ -11,8 +11,8 @@ namespace App\Handler;
 
 use App\Controller\HelperTrait;
 use App\Entity\Article;
-use App\Article\ArticleFactory;
-use App\Article\ArticleRequest;
+use App\Factory\ArticleFactory;
+use App\Request\ArticleRequest;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Asset\Package;
 use Symfony\Component\Asset\Packages;
@@ -38,7 +38,7 @@ class ArticleRequestHandler
     }
 
     /**
-     * @param ArticleRequest $articleRequest
+     * @param \App\Request\ArticleRequest $articleRequest
      * @return Article
      */
     public function handle( ArticleRequest $articleRequest ) : Article
